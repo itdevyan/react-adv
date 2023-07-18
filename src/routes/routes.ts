@@ -1,5 +1,4 @@
 import { lazy } from "react";
-import { LazyPage1, LazyPage2, LazyPage3 } from "../01-lazyload/pages";
 
 type JSXComponent = () => JSX.Element;
 
@@ -11,9 +10,20 @@ interface Route {
 }
 // Para importar el componente lazy, este debe exportarse por defecto
 // export default LazyPage1;
-const Lazy1 = lazy(() => import("../01-lazyload/pages/LazyPage1"));
-const Lazy2 = lazy(() => import("../01-lazyload/pages/LazyPage2"));
-const Lazy3 = lazy(() => import("../01-lazyload/pages/LazyPage3"));
+// Para renombrar el chunk al bundle de producción, se debe poner tal cual
+// como el ejemplo de abajo (como si fuera comentario)
+const Lazy1 = lazy(
+  () =>
+    import(/* webpackChunkName: "LazyPage1" */ "../01-lazyload/pages/LazyPage1")
+);
+const Lazy2 = lazy(
+  () =>
+    import(/* webpackChunkName: "LazyPage2" */ "../01-lazyload/pages/LazyPage2")
+);
+const Lazy3 = lazy(
+  () =>
+    import(/* webpackChunkName: "LazyPage3" */ "../01-lazyload/pages/LazyPage3")
+);
 
 export const routes: Route[] = [
   {
